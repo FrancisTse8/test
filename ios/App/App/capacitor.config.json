@@ -1,0 +1,7 @@
+{
+  "appId": "com.pleiadestechnology.test",
+  "appName": "test",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www"
+}
