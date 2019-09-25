@@ -1,5 +1,5 @@
 {
-  "appId": "com.pleiadestechnology.test",
+  "appId": "io.ionic.starter",
   "appName": "test",
   "bundledWebRuntime": false,
   "npmClient": "npm",
