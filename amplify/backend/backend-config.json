@@ -1,0 +1,15 @@
+{
+	"auth": {
+		"test8fd07aa4": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	},
+	"analytics": {
+		"test": {
+			"service": "Pinpoint",
+			"providerPlugin": "awscloudformation"
+		}
+	}
+}

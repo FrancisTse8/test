@@ -7,19 +7,7 @@
 </ion-header>
 
 <ion-content>
-    <ion-card class="welcome-card">
-      <img src="/assets/shapes.svg" alt="" />
-      <ion-card-header>
-        <ion-card-subtitle>Get Started</ion-card-subtitle>
-        <ion-card-title>Smart ToDo List</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>Click Login if you already have an account.</p>
-      </ion-card-content>
-    </ion-card>
 
-    <ion-button (click)="login()">Login!</ion-button>
-    <ion-button (click)="logout()">Logout!</ion-button>
-    Logged In? {{authState.loggedIn}}    
+    <amplify-authenticator framework="ionic"></amplify-authenticator>
     
 </ion-content>
