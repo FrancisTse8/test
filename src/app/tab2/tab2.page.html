@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title *ngIf="user">User</ion-title>
+    <ion-title *ngIf="user">{{user.username}} ToDo List</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="modify(null, null)">Add Item</ion-button>
     </ion-buttons>
