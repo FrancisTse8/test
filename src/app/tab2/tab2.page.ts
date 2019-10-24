@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController, Events } from '@ionic/angular';
+import { AmplifyService } from 'aws-amplify-angular';
 import { ListItemModal } from './list.item.modal';
 import { ToDoItem, ToDoList } from '../classes/item.class';
+import { debug } from 'util';
 
 @Component({
   selector: 'app-tab2',
@@ -10,27 +12,40 @@ import { ToDoItem, ToDoList } from '../classes/item.class';
 })
 export class Tab2Page implements OnInit {
 
+  amplifyService: AmplifyService;
   modal: any;
   data: any;
   user: any;
-  itemList: ToDoList;
+  itemList: ToDoList | any;
   signedIn: boolean;
 
   constructor(
     public modalController: ModalController,
+    amplify: AmplifyService,
     events: Events
   ) {
+    this.amplifyService = amplify;
     // Listen for changes to the AuthState in order to change item list appropriately
-    events.subscribe('data:AuthState', async (data) => {
+    events.subscribe('data:AuthState', (data) => {
+      console.log("events.subscribe() called ...");
+      console.log("data = " + JSON.stringify(data));
       if (data.loggedIn){
-        this.getItems();
+        this.amplifyService.auth().currentUserInfo().then ((user) => {
+          console.log('Current User = ' + JSON.stringify(user));
+          this.user = user;
+          this.getItems();
+        });
+
       } else {
-        this.itemList.items = []; //uncommented this ***Francis
+        this.itemList = [];
+        this.user = null;
       }
     })
   }
 
   async ngOnInit(){
+    // Use AWS Amplify to get user data when creating items
+    this.user = await this.amplifyService.auth().currentUserInfo();
     this.getItems();
   }
 
@@ -38,12 +53,12 @@ export class Tab2Page implements OnInit {
     console.log("item = " + JSON.stringify(item));
     console.log("i = " + i);
     let props = {
-      itemList: this.itemList,
+      itemList: this.itemList || new ToDoList({userId: this.user.id}),
       /*
         We pass in an item parameter only when the user clicks on an existing item
         and therefore populate an editItem value so that our modal knows this is an edit operation.
       */
-      editItem: item || null  //changed this from undefined to null
+      editItem: item || undefined
     };
 
     // Create the modal
@@ -70,37 +85,45 @@ export class Tab2Page implements OnInit {
 
   delete(i){
     this.itemList.items.splice(i, 1);
-    this.save(this.itemList); //uncommented this ***Francis
+    this.save(this.itemList);
   }
 
   complete(i){
     this.itemList.items[i].status = "complete";
-    this.save(this.itemList); //uncommented this ***Francis
+    this.save(this.itemList);
   }
 
   save(list){
+    console.log("save() called ... list = " + JSON.stringify(list));
     // Use AWS Amplify to save the list...
-    this.itemList = list; //uncommented this ***Francis
+    this.amplifyService.api().post('ToDoItemsCRUD', '/ToDoItems', {body: list}).then((i) => {
+      console.log("post() was called and returned sucessfully ...");
+      // ... and to get the list after you save it.
+      this.getItems()
+    })
+    .catch((err) => {
+      console.log('Error saving list: ${err}')
+    })
   }
 
   getItems(){
-    this.itemList = {
-      userId: 1,
-      items: [
-        new ToDoItem({
-          id: '1',
-          title: 'test item 1',
-          description: 'my test item',
-          status: 'complete'
-        }),
-        new ToDoItem({
-          id: '2',
-          title: 'test item 3',
-          description: 'my other test item',
-          status: 'pending'
-        })
-      ]
+    console.log('getItem() called ... this.user = ' + JSON.stringify(this.user));
+    if (this.user) {
+      console.log("this.user.id = " + this.user.id);
+      // Use AWS Amplify to get the list
+      this.amplifyService.api().get('ToDoItemsCRUD', `/ToDoItems/${this.user.id}`).then((res) => {
+        console.log("api().get called ... res = " + JSON.stringify(res));
+        if (res && res.length > 0) {
+          this.itemList = res[0];
+        } else {
+          this.itemList = new ToDoList({userId: this.user.id, items: []});
+        }
+    })
+    .catch((err) => {
+      console.log('Error getting list: ${err}')
+      })
+    } else {
+      console.log('Cannot get items: no active user')
     }
   }
-
 }

@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab2Page } from './tab2.page';
 import { ListItemModal } from './list.item.modal';
+import { AmplifyService} from 'aws-amplify-angular';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { ListItemModal } from './list.item.modal';
   entryComponents: [
     Tab2Page,
     ListItemModal
-  ]
+  ],
+  providers: [AmplifyService]
 })
 export class Tab2PageModule {}

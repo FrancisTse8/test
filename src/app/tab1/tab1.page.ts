@@ -25,6 +25,7 @@ export class Tab1Page implements AfterContentInit {
     this.amplifyService = amplify;
     this.amplifyService.authStateChange$
     .subscribe(authState => {
+      console.log("authStateChanges$ returned - authState = " + JSON.stringify(authState));
       this.authState.loggedIn = authState.state === 'signedIn';
       this.events.publish('data:AuthState', this.authState)
     });

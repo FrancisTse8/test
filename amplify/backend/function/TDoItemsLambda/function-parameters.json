@@ -1,0 +1,12 @@
+{
+    "permissions": {
+        "storage": {
+            "ToDoItems": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ]
+        }
+    }
+}
