@@ -1,0 +1,5 @@
+type NewTodo @model @key(fields: ["userId", "name"]) {
+  userId: ID!
+  name: String!
+  description: String
+}

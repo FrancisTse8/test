@@ -14,15 +14,15 @@
         },
     
     
-          "functionTDoItemsLambdaName": {
+          "functionToDoItemsLambdaName": {
             "Type": "String",
-            "Default": "functionTDoItemsLambdaName"
+            "Default": "functionToDoItemsLambdaName"
           },
         
           
-          "functionTDoItemsLambdaArn": {
+          "functionToDoItemsLambdaArn": {
             "Type": "String",
-            "Default": "functionTDoItemsLambdaArn"
+            "Default": "functionToDoItemsLambdaArn"
           }
         
           
@@ -173,7 +173,7 @@
                             
                             {
                                 
-                                "Ref": "functionTDoItemsLambdaArn"
+                                "Ref": "functionToDoItemsLambdaArn"
                             },
                             
                             "/invocations"
@@ -272,7 +272,7 @@
                           
                           {
                             
-                            "Ref": "functionTDoItemsLambdaArn"
+                            "Ref": "functionToDoItemsLambdaArn"
                           },
                           
                           "/invocations"
@@ -329,12 +329,12 @@
                   
         
         
-        "functionTDoItemsLambdaPermissionToDoItemsCRUD": {
+        "functionToDoItemsLambdaPermissionToDoItemsCRUD": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
                 "FunctionName": 
                     {
-                        "Ref":  "functionTDoItemsLambdaName"
+                        "Ref":  "functionToDoItemsLambdaName"
                     },
                     
                     "Action": "lambda:InvokeFunction",

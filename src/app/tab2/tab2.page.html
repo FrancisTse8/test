@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title *ngIf="user">{{user.username}} ToDo List</ion-title>
+    <ion-title>Where are my things!</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="modify(null, null)">Add Item</ion-button>
     </ion-buttons>
@@ -15,7 +15,7 @@
           <ion-button (click)="delete(i)">
               <ion-icon name="trash" size="small"></ion-icon>Delete</ion-button>
           <ion-button (click)="complete(i)">
-              <ion-icon name="checkmark-circle"  size="small" [ngClass]="{'complete': item.status=='complete'}"></ion-icon>Mark Complete
+              <ion-icon name="checkmark-circle"  size="small" [ngClass]="{'complete': item.status=='complete'}"></ion-icon>Mark as Secret
           </ion-button>
         </ion-buttons>
     </ion-card>

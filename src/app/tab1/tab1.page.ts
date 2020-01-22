@@ -32,15 +32,18 @@ export class Tab1Page implements AfterContentInit {
   }
 
   ngAfterContentInit(){
+    console.log("ngAfterContentInit() called ... this.authState.loggedIn = " + this.authState.loggedIn);
     this.events.publish('data:AuthState', this.authState)
   }
 
   login() {
+    console.log("login() called ... this.authState = " + this.authState.state);
     this.authState.loggedIn = true;
     this.events.publish('data:AuthState', this.authState)
   }
 
   logout() {
+    console.log("logout() called ... this.authState = " + this.authState.state);
     this.authState.loggedIn = false;
     this.events.publish('data:AuthState', this.authState)
   }

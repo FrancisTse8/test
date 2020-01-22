@@ -1,17 +1,12 @@
 {
 	"auth": {
-		"test8fd07aa4": {
+		"testa2b72b37": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": []
 		}
 	},
-	"analytics": {
-		"test": {
-			"service": "Pinpoint",
-			"providerPlugin": "awscloudformation"
-		}
-	},
+	"analytics": {},
 	"storage": {
 		"ToDoItems": {
 			"service": "DynamoDB",
@@ -19,7 +14,7 @@
 		}
 	},
 	"function": {
-		"TDoItemsLambda": {
+		"ToDoItemsLambda": {
 			"service": "Lambda",
 			"providerPlugin": "awscloudformation",
 			"build": true,
@@ -42,13 +37,28 @@
 			"dependsOn": [
 				{
 					"category": "function",
-					"resourceName": "TDoItemsLambda",
+					"resourceName": "ToDoItemsLambda",
 					"attributes": [
 						"Name",
 						"Arn"
 					]
 				}
 			]
+		},
+		"AppsyncTodo": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"authConfig": {
+					"additionalAuthenticationProviders": [],
+					"defaultAuthentication": {
+						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
+						"userPoolConfig": {
+							"userPoolId": "authtesta2b72b37"
+						}
+					}
+				}
+			}
 		}
 	}
 }

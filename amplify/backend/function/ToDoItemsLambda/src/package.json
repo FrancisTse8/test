@@ -1,5 +1,5 @@
 {
-  "name": "ToDoItemsFunction",
+  "name": "ToDoItemsLambda",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

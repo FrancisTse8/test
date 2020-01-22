@@ -8,11 +8,12 @@
             "DeploymentBucketName": "test-test-20190925212517-deployment",
             "UnauthRoleName": "test-test-20190925212517-unauthRole",
             "StackName": "test-test-20190925212517",
-            "StackId": "arn:aws:cloudformation:us-east-1:645772801450:stack/test-test-20190925212517/7fec3550-dffc-11e9-941c-12ece74fd46e"
+            "StackId": "arn:aws:cloudformation:us-east-1:645772801450:stack/test-test-20190925212517/7fec3550-dffc-11e9-941c-12ece74fd46e",
+            "AmplifyAppId": "d8czggyb7csun"
         },
         "categories": {
             "auth": {
-                "test8fd07aa4": {}
+                "testa2b72b37": {}
             }
         }
     }

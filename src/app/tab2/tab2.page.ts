@@ -4,6 +4,11 @@ import { AmplifyService } from 'aws-amplify-angular';
 import { ListItemModal } from './list.item.modal';
 import { ToDoItem, ToDoList } from '../classes/item.class';
 import { debug } from 'util';
+import * as queries from '../../graphql/queries';
+//import * as mutations from '../../graphql/mutations';
+import * as mutations from '../../graphql/mutations';
+import Amplify, { API, graphqlOperation } from 'aws-amplify';
+
 
 @Component({
   selector: 'app-tab2',
@@ -93,17 +98,29 @@ export class Tab2Page implements OnInit {
     this.save(this.itemList);
   }
 
-  save(list){
+  async save(list){
     console.log("save() called ... list = " + JSON.stringify(list));
+     //Code to use the API CRUD to save item
     // Use AWS Amplify to save the list...
     this.amplifyService.api().post('ToDoItemsCRUD', '/ToDoItems', {body: list}).then((i) => {
+//    this.amplifyService.api().post('ToDoItemsCRUD', `/ToDoItems/${this.user.id}`, {body: list}).then((i) => {
       console.log("post() was called and returned sucessfully ...");
       // ... and to get the list after you save it.
       this.getItems()
     })
     .catch((err) => {
       console.log('Error saving list: ${err}')
-    })
+    });
+    /*
+   // Try using GraphQL to do the same thing
+   const todoDetails = {
+     userId: this.user.username,
+     name: "item2",
+     description: "Description of item2."
+   }
+   const newTodo = await API.graphql(graphqlOperation(mutations.createNewTodo, {input: todoDetails}));
+   console.log("newTodo = " + JSON.stringify(newTodo));
+   */
   }
 
   getItems(){
@@ -111,7 +128,7 @@ export class Tab2Page implements OnInit {
     if (this.user) {
       console.log("this.user.id = " + this.user.id);
       // Use AWS Amplify to get the list
-      this.amplifyService.api().get('ToDoItemsCRUD', `/ToDoItems/${this.user.id}`).then((res) => {
+      this.amplifyService.api().get('ToDoItemsCRUD', `/ToDoItems/${this.user.username}`).then((res) => {
         console.log("api().get called ... res = " + JSON.stringify(res));
         if (res && res.length > 0) {
           this.itemList = res[0];

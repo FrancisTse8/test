@@ -28,7 +28,9 @@
     "@ionic/angular": "^4.7.1",
     "aws-amplify": "^1.2.2",
     "aws-amplify-angular": "^3.1.2",
+    "aws-appsync": "^3.0.2",
     "core-js": "^2.5.4",
+    "graphql-tag": "^2.10.1",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
@@ -47,6 +49,7 @@
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
+    "@types/uuid": "^3.4.5",
     "codelyzer": "^5.0.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
