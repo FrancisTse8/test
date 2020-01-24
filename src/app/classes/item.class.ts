@@ -23,3 +23,13 @@ export class ToDoItem {
     this.status = 'new';
   }
 }
+
+export class myItemsList {
+  items: Array<ToDoItem>
+}
+
+export class myItem {
+  userId: string;
+  title: string;
+  description: string
+}

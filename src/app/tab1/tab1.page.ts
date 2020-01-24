@@ -25,14 +25,14 @@ export class Tab1Page implements AfterContentInit {
     this.amplifyService = amplify;
     this.amplifyService.authStateChange$
     .subscribe(authState => {
-      console.log("authStateChanges$ returned - authState = " + JSON.stringify(authState));
+//      console.log("authStateChanges$ returned - authState = " + JSON.stringify(authState));
       this.authState.loggedIn = authState.state === 'signedIn';
       this.events.publish('data:AuthState', this.authState)
     });
   }
 
   ngAfterContentInit(){
-    console.log("ngAfterContentInit() called ... this.authState.loggedIn = " + this.authState.loggedIn);
+//    console.log("ngAfterContentInit() called ... this.authState.loggedIn = " + this.authState.loggedIn);
     this.events.publish('data:AuthState', this.authState)
   }
 
@@ -43,7 +43,7 @@ export class Tab1Page implements AfterContentInit {
   }
 
   logout() {
-    console.log("logout() called ... this.authState = " + this.authState.state);
+//    console.log("logout() called ... this.authState = " + this.authState.state);
     this.authState.loggedIn = false;
     this.events.publish('data:AuthState', this.authState)
   }

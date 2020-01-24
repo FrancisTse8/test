@@ -17,7 +17,7 @@ platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.log(err));
 
 Amplify.configure(awsmobile);
-
+/*
 const client = new AWSAppSyncClient({
   url: awsmobile.aws_appsync_graphqlEndpoint,
   region: awsmobile.aws_appsync_region,
@@ -29,3 +29,4 @@ const client = new AWSAppSyncClient({
     //apiKey: awsmobile.aws_appsync_apiKey,
   }
 });
+*/

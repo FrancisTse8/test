@@ -5,7 +5,6 @@ import { ListItemModal } from './list.item.modal';
 import { ToDoItem, ToDoList } from '../classes/item.class';
 import { debug } from 'util';
 import * as queries from '../../graphql/queries';
-//import * as mutations from '../../graphql/mutations';
 import * as mutations from '../../graphql/mutations';
 import Amplify, { API, graphqlOperation } from 'aws-amplify';
 
