@@ -1,12 +1,12 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      About
+      Debby Notes
     </ion-title>
     <ion-buttons slot="primary">
-      <button ion-button (click)="create()">
-        CREATE
-      </button>
+      <ion-button (click)="create()">
+        <ion-icon slot="icon-only" name="add-circle"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -19,9 +19,11 @@
   </ion-card>
   <ion-searchbar (ionInput)="getOneItem($event)"></ion-searchbar>
   <ion-list>
-    <ion-item *ngFor="let item of itemList">
-      {{item.name}}:
-      {{item.description}}
-    </ion-item>
+    <div *ngFor="let item of itemList">
+        <ion-text>
+          <h3>{{item.name}}</h3>
+          <p>{{item.description}}</p>
+        </ion-text>
+    </div>
   </ion-list>
 </ion-content>
