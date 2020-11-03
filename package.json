@@ -27,7 +27,7 @@
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^4.7.1",
     "aws-amplify": "^1.2.2",
-    "aws-amplify-angular": "^3.1.2",
+    "aws-amplify-angular": "^3.2.3",
     "aws-appsync": "^3.0.2",
     "core-js": "^2.5.4",
     "graphql-tag": "^2.10.1",
